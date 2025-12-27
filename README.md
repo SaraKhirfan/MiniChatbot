@@ -32,7 +32,7 @@ The system follows a modern AI stack:
 The core logic utilizes **LangChain Expression Language (LCEL)** to chain the prompt and LLM:
 
 python
- The logic flow:
+The logic flow:
  1. User asks a question
  2. Similarity search finds relevant 'docs' in FAISS
  3. Prompt is filled with the retrieved 'context'
@@ -44,7 +44,7 @@ JavaScript: Intelligent preloader management using the performance.getEntriesByT
 
 ---
 
-##📝 Short Reflection
+## 📝 Short Reflection
 What worked well? The integration between FAISS and LangChain was seamless. The system's ability to retrieve exact citations from the text proved that the semantic search was highly accurate.
 
 What limitations did we face? Standardizing text chunks was a challenge; if a chunk is too short, it lacks context, but if it is too long, it can exceed the LLM's prompt limit. We balanced this by using k=5 in our similarity search.
@@ -53,7 +53,7 @@ How did RAG improve the answers? RAG transformed a general-purpose model into a 
 
 ---
 
-##🔧 Installation & Setup
+## 🔧 Installation & Setup
 
 Clone the repo:
 git clone [repository-url]
