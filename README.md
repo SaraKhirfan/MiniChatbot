@@ -56,13 +56,13 @@ How did RAG improve the answers? RAG transformed a general-purpose model into a 
 ## 🔧 Installation & Setup
 
 Clone the repo:
-git clone [repository-url]
+`git clone [repository-url]`
 
 Install dependencies:
-pip install langchain langchain-openai faiss-cpu sentence-transformers flask
+`pip install langchain langchain-openai faiss-cpu sentence-transformers flask`
 
 Set OpenAI Key:
 Ensure your OPENAI_API_KEY is set in your environment variables.
 
 Run the application:
-python app.py
+`python app.py`
