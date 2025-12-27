@@ -1,5 +1,6 @@
-# 🎓 GenAI Study (Lab 8 - Gen AI Internship - HTU - Dec 2025)
+# 🎓 GenAI Study 
 
+(Lab 8 - Gen AI Internship - HTU - Dec 2025)
 An intelligent, Retrieval-Augmented Generation (RAG) assistant designed to help students master the foundations of Generative AI based on specific course materials.
 
 ---
