@@ -1,4 +1,4 @@
-# 🎓 GenAI Study Buddy (Lab 8)
+# 🎓 GenAI Study (Lab 8 - Gen AI Internship - HTU - DEc 2025)
 
 An intelligent, Retrieval-Augmented Generation (RAG) assistant designed to help students master the foundations of Generative AI based on specific course materials.
 
@@ -60,7 +60,9 @@ git clone [repository-url]
 
 Install dependencies:
 pip install langchain langchain-openai faiss-cpu sentence-transformers flask
-Set OpenAI Key: Ensure your OPENAI_API_KEY is set in your environment variables.
+
+Set OpenAI Key:
+Ensure your OPENAI_API_KEY is set in your environment variables.
 
 Run the application:
 python app.py
