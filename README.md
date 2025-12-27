@@ -45,7 +45,7 @@ JavaScript: Intelligent preloader management using the performance.getEntriesByT
 ---
 
 ## 📝 Short Reflection
-'**What worked well?** The integration between FAISS and LangChain was seamless. The system's ability to retrieve exact citations from the text proved that the semantic search was highly accurate.
+**What worked well?** The integration between FAISS and LangChain was seamless. The system's ability to retrieve exact citations from the text proved that the semantic search was highly accurate.
 
 **What limitations did we face?** Standardizing text chunks was a challenge; if a chunk is too short, it lacks context, but if it is too long, it can exceed the LLM's prompt limit. We balanced this by using k=5 in our similarity search.
 
