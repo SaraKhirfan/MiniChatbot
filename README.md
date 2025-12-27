@@ -1,7 +1,7 @@
 # 🎓 GenAI Study 
 
-(Lab 8 - Gen AI Internship - HTU - Dec 2025)
-An intelligent, Retrieval-Augmented Generation (RAG) assistant designed to help students master the foundations of Generative AI based on specific course materials.
+(Lab 8 - Gen AI Internship - HTU - Dec 2025),
+an intelligent, Retrieval-Augmented Generation (RAG) assistant designed to help students master the foundations of Generative AI based on specific course materials.
 
 ---
 
@@ -32,8 +32,7 @@ The system follows a modern AI stack:
 ### The RAG Pipeline (Python)
 The core logic utilizes **LangChain Expression Language (LCEL)** to chain the prompt and LLM:
 
-python
-The logic flow:
+python, the logic flow:
  1. User asks a question
  2. Similarity search finds relevant 'docs' in FAISS
  3. Prompt is filled with the retrieved 'context'
