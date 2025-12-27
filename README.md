@@ -32,11 +32,11 @@ The system follows a modern AI stack:
 The core logic utilizes **LangChain Expression Language (LCEL)** to chain the prompt and LLM:
 
 python
-# The logic flow:
-# 1. User asks a question
-# 2. Similarity search finds relevant 'docs' in FAISS
-# 3. Prompt is filled with the retrieved 'context'
-# 4. LLM generates answer based ONLY on that context
+ The logic flow:
+ 1. User asks a question
+ 2. Similarity search finds relevant 'docs' in FAISS
+ 3. Prompt is filled with the retrieved 'context'
+ 4. LLM generates answer based ONLY on that context
 chain = prompt | llm | StrOutputParser()
 The Frontend (HTML5/CSS3/JS)
 CSS Animations: Custom @keyframes for the moving gradient background and spinner.
