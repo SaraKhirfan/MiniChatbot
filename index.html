@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --accent: #a855f7;
+            --text-dark: #1e293b;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+        }
+
+
+        #preloader { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #dcfce7 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        } 
+
+        .loader-ring {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(99, 102, 241, 0.1);
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary-glow);
+            animation: spin 1s linear infinite;
+            margin-bottom: 25px;
+        }
+
+        .project-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .loader-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: #64748b;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #dcfce7 100%);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem;
+            box-sizing: border-box;
+        }
+
+        .header { flex-shrink: 0; margin-bottom: 1rem; }
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .subtitle-row { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; }
+        .subtitle { color: #64748b; font-size: 0.9rem; margin: 0; }
+
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+            padding-right: 10px;
+            scroll-behavior: smooth;
+        }
+
+        #chat-container::-webkit-scrollbar { width: 6px; }
+        #chat-container::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 10px;
+        }
+
+        .chatbox {
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .ai-answer {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 1rem;
+            white-space: pre-wrap;
+        }
+
+        .input-area {
+            flex-shrink: 0;
+            background: white;
+            padding: 8px;
+            border-radius: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover { background: #4f46e5; }
+        button:disabled { background: #94a3b8; }
+
+        #loader {
+            display: none;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <div class="project-name">GenAI Study</div>
+        <div class="loader-text">Initializing System...</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎓 GenAI Study</h1>
+            <div class="subtitle-row">
+                <p class="subtitle">Generative AI Course Assistant</p>
+                <a href="/clear" style="font-size: 0.8rem; color: #ef4444; text-decoration: none; font-weight: 600;">Clear History</a>
+            </div>
+        </div>
+
+        <div id="chat-container">
+            {% for chat in chat_history %}
+            <div class="chatbox">
+                <span class="label">✨ Question</span>
+                <p style="margin: 0 0 1rem 0; font-weight: 600;">{{ chat.question }}</p>
+                <span class="label">🤖 AI Analysis</span>
+                <div class="ai-answer">{{ chat.answer }}</div>
+            </div>
+            {% endfor %}
+            <div id="bottom-anchor"></div>
+        </div>
+
+        <div id="loader">AI is thinking...</div>
+
+        <form method="POST" id="chatForm">
+            <div class="input-area">
+                <input type="text" name="question" autocomplete="off" placeholder="Ask about the course..." required>
+                <button type="submit" id="submitBtn">Ask</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const form = document.getElementById('chatForm');
+        const loader = document.getElementById('loader');
+        const btn = document.getElementById('submitBtn');
+        const preloader = document.getElementById('preloader');
+
+        window.addEventListener('load', function() {
+            const navEntries = performance.getEntriesByType('navigation');
+            const isPost = navEntries.length > 0 && navEntries[0].type === 'navigate' && window.location.href.includes('?'); 
+            const perfData = window.performance.getEntriesByType("navigation")[0];
+            
+            if (perfData.type !== "reload" && document.referrer.includes(window.location.hostname)) {
+                 preloader.style.display = 'none';
+                 scrollToBottom();
+            } else {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                    }, 800);
+                    scrollToBottom();
+                }, 1800); 
+            }
+        });
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        form.onsubmit = function() {
+            loader.style.display = "block";
+            btn.disabled = true;
+            btn.innerHTML = "Working...";
+            setTimeout(scrollToBottom, 50);
+        };
+    </script>
+</body>
+</html>
