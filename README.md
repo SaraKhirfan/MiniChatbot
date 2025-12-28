@@ -1,6 +1,6 @@
 # 🎓 GenAI Study 
 
-(Lab 8 - Gen AI Internship - HTU - Dec 2025),
+(Lab 8 - Sara Khirfan, Sondos Ibrahim, Sadeel Alhaleeq - Gen AI Internship - HTU - Dec 2025),
 an intelligent, Retrieval-Augmented Generation (RAG) assistant designed to help students master the foundations of Generative AI based on specific course materials.
 
 ---
